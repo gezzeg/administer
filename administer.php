@@ -43,13 +43,13 @@ if ( ! class_exists( 'Administer' ) ) {
 			add_action('wp_before_admin_bar_render', array($this,'remove_items_wp_admin_bar'), 1000);
 			
 			//admin footer version remove
-			add_action( 'admin_menu', array($this,'admin_footer_remove'));
+			add_action( 'admin_menu', array($this,'dashboard_footer_remove'));
 			
 			//admin footer version update
-			add_filter('update_footer', array($this,'admin_footer_update'),9999);
+			add_filter('update_footer', array($this,'dashboard_footer_update'),9999);
 			//add_action( 'admin_menu', array($this,'adminFooterUpdate' ));
 			
-			add_filter('admin_footer_text', array($this,'admin_footer_text'));
+			add_filter('admin_footer_text', array($this,'dashboard_footer_text'));
 
 			add_action( 'admin_menu', array($this,'remove_menus'),100);
 
@@ -115,7 +115,7 @@ if ( ! class_exists( 'Administer' ) ) {
    		//Change Footer Text
 	    ////////////////////////////////////////////////////////////////
 
-	    function admin_footer_text () {  
+	    function dashboard_footer_text () {  
 
 	    	echo "Administer &copy;";
   		
@@ -126,7 +126,7 @@ if ( ! class_exists( 'Administer' ) ) {
    		//Remove Footer
 	    ////////////////////////////////////////////////////////////////
 
-		function admin_footer_remove() {
+		function dashboard_footer_remove() {
 		    if ( ! current_user_can('manage_options') ) { // 'update_core' may be more appropriate
 		        remove_filter( 'update_footer', 'core_update_footer' ); 
 		    }
@@ -136,7 +136,7 @@ if ( ! class_exists( 'Administer' ) ) {
    		//Change version
 	    ////////////////////////////////////////////////////////////////
 
-		function admin_footer_update(){
+		function dashboard_footer_update(){
 			return 'Version 1.0.0';
 			//echo "asd";
 			//add_filter( 'update_footer', '__return_empty_string', 11 );
